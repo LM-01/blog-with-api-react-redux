@@ -12,9 +12,19 @@ const getPosts = (state = [], action) => {
             return state;
 
     }
+}
 
+const getUser = (state = [], action) => {
+    // console.log(action.payload)
+    switch(action.type) {
+        case 'FETCH_USER':
+            return [...state,action.payload]
+        default:
+            return state;
+    }
 }
 
 export default combineReducers({
-    posts: getPosts
+    posts: getPosts,
+    users: getUser,
 });
