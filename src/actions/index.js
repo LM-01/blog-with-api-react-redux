@@ -14,11 +14,15 @@ export const fetchPosts = () => async dispatch => {
 }
 
 
-export const fetchUserID = (userId) => async dispatch => {
+export const fetchUserID = (userId) => dispatch => {
+    _fetchUser(userId, dispatch);
+}
+
+const _fetchUser = _.memoize(async (userId, dispatch) => {
     const response = await jsonplaceholder.get(`/users/${userId}`);
 
     dispatch({
         type: 'FETCH_USER',
         payload: response.data
     });
-}
+});
